@@ -9,7 +9,8 @@ This page explains:
 
 ### Requirements
 
-Open the navigation tree on the left to download the latest Eitri.exe.
+1. Latest Eitri.exe file. Open the navigation tree and download the latest Eitri.exe.
+2. Basic installation of MiKTex. Navigate to MiKTex's [official website](https://miktex.org/download) and download the latext MiKTex package, and install.
 
 ### How to Setup Eitri
 
