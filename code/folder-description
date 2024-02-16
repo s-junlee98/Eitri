@@ -1,0 +1,22 @@
+## Code and Spec File
+
+### Inspecting the Python Code
+
+The code for Eitri is writtn in python. You can see the code by downloading the file and opening it in a compatible code editor.
+
+### Inspecting the Spec File
+
+The spec file is required when packaging the python file into an executable (.exe) program. It maps any resources required to turn the python file into a standalone executable file.
+
+For example, Eitri contains a number of default .tex templates. The final executable file must contain these templates - the spec file helps the package 'generator' to understand which resources are needed.
+
+### Compiling the Python Code
+
+To compile the python code into an executable program:
+
+1. Install 'pyinstaller' by executing 'pip install pyinstaller'.
+2. Open a CMD window, and navigate to the diretory which contains the python file, the 'res' folder, and the spec file.
+3. Execute: 'pyinstaller Eitri.spec'
+4. This will generate a number of additional folders during the process. Simply wait until the command is fully executed.
+5. A new folder called 'dist' should appear. This folder contains the standalone Eitri.exe file.
+
