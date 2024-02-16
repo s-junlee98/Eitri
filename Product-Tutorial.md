@@ -9,10 +9,7 @@ This page explains:
 
 ### Requirements
 
-1. To begin, please ensure you have **downloaded** and **installed** the required fonts. [Download the fonts here](https://tradinghub.sharepoint.com/:f:/r/sites/TradingHubDocumentation/Shared%20Documents/Internal%20Only/Eitri/Fonts?csf=1&web=1&e=uUQ27I).
-2. Open the navigation tree on the left to download the latest Eitri.exe.
-
-![Download the latest Eitri.exe](images/navigation-tree.png)
+Open the navigation tree on the left to download the latest Eitri.exe.
 
 ### How to Setup Eitri
 
@@ -60,7 +57,7 @@ The following steps outline how to use Eitri.
 
 ![Step 8](images/select-template.png)
 
-9.  Choose the appropriate confidentiality header. For more information, visit the [Confidentiality Guide](https://docs.tradinghub.com/articles/Confidentiality_Guide/000-LandingPage.html).
+9.  Choose the appropriate confidentiality header..
 
 ![Step 9](images/select-header.png)
 
@@ -88,7 +85,7 @@ The following steps outline how to use Eitri.
 
 ### Generating a PDF from DOCX
 
-- **If you are creating a new document in Word (.docx) format:**, please read through and use the [Eitri Word Template](https://tradinghub.sharepoint.com/:w:/s/TradingHubDocumentation/Eawb3pvNks1El9bhCkXUvNQBqigfkyDC5Gs05V0ASTRkGQ?e=t6JFmC). Then, simply follow the steps in "How to Use Eitri to Create a PDF".
+- **If you are creating a new document in Word (.docx) format:**, please read through and use the Eitri Word Template. Then, simply follow the steps in "How to Use Eitri to Create a PDF".
 - **If you have an existing document which you have already created** and would like to format the Word document correctly, follow the series of steps below.
 
 #### Formatting an Existing Word Document for Conversion
@@ -103,10 +100,6 @@ The following steps outline how to use Eitri.
 5. Ensure that your images are correctly captioned. To to this, right click on the image and select "Edit Alt Text". The text contained here appears as the image caption in the PDF when you convert it using Eitri.
 6. Use Eitri to convert the Word file into a formatted PDF by following the steps in "How to Use Eitri to Create a PDF". 
 
-**Please note: When converting from .docx, there is no simple way of adding an appendix (but it is possible!).**
+**Please contact the s.junlee98@gmail.com team for assistance.**
 
-**Please contact the documentation team for assistance.**
 
-### Feedback
-
-If you have any errors or feedback, please email Documentaion@tradinghub.com, or message Seungjun Lee on MS Teams.
