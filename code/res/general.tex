@@ -1,0 +1,314 @@
+\documentclass[10pt,a4paper,titlepage]{report}
+
+% These two lines are important!  They hide dates and auto-generated IDs from the PDF output, so that the PDF builds are reproducible.
+% Without this we would commit the PDF to SVN on every build, regardless of whether the .md files were updated.
+\special{pdf:trailerid [
+	<00112233445566778899aabbccddeeff>
+	<00112233445566778899aabbccddeeff>
+	]}
+
+% So that pandoc plays nice
+\usepackage{booktabs}
+
+% allows more symbols to be used within a block of text + eqns
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+% The 3 lines below fixes "undefined environment \begin{Shade}" when using "```code" blocks in the markdown files.
+$if(highlighting-macros)$
+$highlighting-macros$
+$endif$
+
+%%To fix the \tightlist error
+\providecommand{\tightlist}{%
+	\setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+
+%using custom fonts
+\usepackage{fontspec}
+\setmainfont[
+BoldFont = {Helvetica Now Display Bold}
+]{Helvetica Now Display}
+\newfontfamily\headingfont[]{Helvetica Now Display Bold}
+
+%force sans serif
+%\renewcommand{\familydefault}{sfdefault}
+
+%datetime
+\usepackage{datetime}
+
+%Ability to Underline
+\usepackage[normalem]{ulem}
+
+% Tweak word splitting and kerning
+\usepackage{microtype}
+\hyphenpenalty=2000
+
+%references
+\usepackage[hidelinks]{hyperref} % creates hypertext links in pdf files (natbib compatible)
+\hypersetup{
+	pdfinfo={ Title={EITRI DOCUMENTATION},
+	DLP={TRUE}
+	}
+}   
+\usepackage[capitalise]{cleveref}
+\crefname{appsec}{Appendix}{Appendices}
+
+
+%images, including max-width
+\usepackage[export]{adjustbox}
+\usepackage{letltxmacro}
+\graphicspath{ {./tempimg/} }
+\LetLtxMacro\originalincludegraphics\includegraphics
+\renewcommand{\includegraphics}[2][max width=0.8\textwidth,max height=\textheight]{\originalincludegraphics[#1]{#2}}
+
+\usepackage{float}
+\let\origfigure\figure
+\let\endorigfigure\endfigure
+\renewenvironment{figure}[1][2] {
+	\expandafter\origfigure\expandafter[H]
+} {
+	\endorigfigure
+}
+
+\renewcommand{\textfraction}{0.1}
+\renewcommand{\topfraction}{0.90}
+\renewcommand{\bottomfraction}{0.90}
+%%\renewcommand{\floatpagefraction}{0.66}
+
+%no page breaks in paragraphs
+\widowpenalties 1 10000
+\raggedbottom
+
+%tables
+\usepackage{widetable}
+\usepackage{longtable}
+\usepackage{booktabs}
+\usepackage{multirow} 
+\usepackage{hyphenat}
+\usepackage{pdflscape}
+\newcommand{\blandscape}{\begin{landscape}} %allows you to use \blandscape in markdown
+\newcommand{\elandscape}{\end{landscape}}
+
+%% Colour setup
+\usepackage[dvipsnames, table]{xcolor}
+\definecolor{tealHighlight}{RGB}{73, 160, 173}
+\definecolor{red}{RGB}{227, 6, 19}
+\definecolor{RED}{RGB}{227, 6, 19}
+\definecolor{green}{RGB}{82, 174, 50}
+\definecolor{GREEN}{RGB}{82, 174, 50}
+\definecolor{yellow}{RGB}{255, 255, 0}
+\definecolor{lightGrey}{RGB}{ 229, 229, 229}
+\definecolor{white}{RGB}{255, 255, 255}
+
+%geometry
+\usepackage[%
+a4paper,
+includeheadfoot,
+marginpar=2.5cm,
+textheight=21cm,
+left=2.5cm,
+right=2.5cm,
+headheight=2cm,
+tmargin=1.5cm,
+headsep=1cm
+]{geometry}
+
+\renewcommand{\footnoterule}{\hrule width \textwidth}
+\setlength{\footnotesep}{1em}
+\setlength{\skip\footins}{5em}
+\usepackage[titletoc]{appendix}
+\usepackage{titlesec}
+\assignpagestyle{\chapter}{fancy}
+
+\usepackage{chngcntr}
+\setcounter{secnumdepth}{7}
+
+\titleformat{name=\chapter}{\Huge\headingfont}{\makebox[25pt][l]{\thechapter. }}{1em}{}
+
+\titleformat{name=\section}[block]{\Large\headingfont}{\makebox[48pt][l]{\thesection. }}{0em}{}
+\titleformat{name=\section,numberless}{\Large\headingfont}{\makebox[48pt][l]{\hspace{48pt}}}{0em}{}
+
+\titleformat{name=\subsection}[block]{\large\headingfont}{\makebox[48pt][l]{\thesubsection. }}{0em}{}
+\titleformat{name=\subsection,numberless}{\large\headingfont}{\makebox[48pt][l]{\hspace{48pt}}}{0em}{}
+
+\titleformat{name=\subsubsection}[block]{\normalsize\headingfont}{\makebox[48pt][l]{\thesubsubsection. }}{0em}{}
+\titleformat{name=\subsubsection,numberless}{\normalsize\headingfont}{\makebox[48pt][l]{\hspace{48pt}}}{0em}{}
+
+\titlespacing*{\chapter}{0em}{-5em}{1.5em}[0cm]
+\titlespacing*{\section}{0em}{2em}{1em}[0cm]
+\titlespacing*{\subsection}{0em}{2em}{1em}[0cm]
+\titlespacing*{\subsubsection}{0em}{1em}{1em}[0cm]
+
+\usepackage{parskip}
+\renewcommand{\baselinestretch}{1.5}
+\setlength{\parindent}{0pt} 
+\setlength{\parskip}{1em}
+
+\usepackage{calc}
+
+\usepackage{array}
+
+\usepackage{enumitem}
+
+\setlist[itemize]{itemsep=0cm, leftmargin=8em, labelsep=2em, rightmargin=2em}
+\setlist[enumerate]{itemsep=0cm, leftmargin=8em, labelsep=2em, rightmargin=2em}
+
+\newlist{enumtab}{enumerate}{2} 
+\setlist[enumtab]{labelindent=0em, labelwidth=2em, leftmargin=3.5em, labelsep=1.5em, label*=\arabic*.}
+
+\newlist{paragraphlist}{enumerate}{1}
+\setlist[paragraphlist,1]{itemsep=1em, leftmargin=5em, rightmargin=4em, labelsep=2.5em, label=\arabic*}
+%\counterwithin{paragraphlisti}{subsubsection}
+
+% centered table columns with controlable widths
+\newcolumntype{P}[1]{>{\centering\arraybackslash}p{#1}}
+
+\setlist{nolistsep}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\usepackage{lastpage}
+
+\usepackage{boldline}
+
+%% Header/Footer
+\fancyhead{}
+\fancyfoot{}
+\setlength{\headheight}{50pt}
+\setlength{\footskip}{50pt}
+
+\renewcommand{\arraystretch}{1.5}
+
+\counterwithin*{chapter}{part}
+\counterwithin*{figure}{part}
+
+%redefine part so that we can place it in the header with \thepart and \parttitle
+\newcommand*\parttitle{}
+\let\origpart\part
+\renewcommand*{\part}[2][]{%
+	\ifx\\#1\\% optional argument not present?
+	\origpart{#2}%
+	\renewcommand*\parttitle{#2}%
+	\else
+	\origpart[#1]{#2}%
+	\renewcommand*\parttitle{#1}%
+	\fi
+}
+
+
+% Header
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+\fancyhf{}
+\fancyhead[L] { \bf{\textcolor{red}{$header$}} \vspace*{2em}}
+
+% Footer
+\fancyfoot[C]{ \vspace*{0.5em} Page \thepage \hspace{0.05em} of \pageref{LastPage} \\
+}
+\fancyfoot[L]{\vspace*{0.5em} EITRI GROUP \\ \vspace*{0.5em} LIMITED}
+\fancyfoot[R]{\vspace*{0.5em} $title$ \\}
+
+% Disclaimer PDF
+\usepackage{pdfpages}
+
+%% ToC
+
+\usepackage[titles]{tocloft}
+\setlength{\cftchapnumwidth}{4em}
+\setlength{\cftsecnumwidth}{4em}
+
+\def\contentsname{Contents}
+
+\setlength{\cftbeforetoctitleskip}{0em}
+\setlength{\cftaftertoctitleskip}{0em}
+\addtocontents{toc}{\protect\thispagestyle{fancy}}
+
+\renewcommand{\cftchapfont}{\large}
+\renewcommand{\cftsecfont}{\normalsize}
+\renewcommand{\cftsubsecfont}{\small}
+
+%\renewcommand{\headrulewidth}{0pt}
+%\renewcommand{\footrulewidth}{0.4pt}
+
+% Drawings and trees
+\usepackage[edges]{forest}
+\usetikzlibrary{fit}
+% rotating figures}
+\usepackage{rotating, caption}
+
+%new font sizes
+\newcommand{\TitleFontSize}{\fontsize{45}{45}\selectfont}
+\newcommand{\DefaultTitleFontSize}{\fontsize{35}{35}\selectfont}
+
+%keep headers/footers off toc/loc pages
+
+\AtBeginDocument{%
+	\addtocontents{toc}{\protect\thispagestyle{empty}}%
+	\addtocontents{lof}{\protect\thispagestyle{empty}}%
+}
+
+%title page background
+\usepackage{eso-pic}
+\newcommand\BackgroundPic{%
+	\put(0,0){%
+		\parbox[b][\paperheight]{\paperwidth}{%
+			\vfill
+			\centering
+			\includegraphics[width=\paperwidth,height=\paperheight,%
+			keepaspectratio]{$titledesign$}%
+			\vfill
+}}}
+
+\usepackage[absolute,overlay]{textpos}
+\usepackage{fix-cm}
+
+\begin{document}
+
+\AddToShipoutPicture*{\BackgroundPic}
+	
+\begin{titlepage}
+
+		\begin{tikzpicture}[remember picture,overlay,shift=(current page.north west)]
+			\begin{scope}[x={(current page.north east)},y={(current page.south west)}] %this scope sets cooridnates as (0,0) top left, (1,1) bottom right.
+				\node at (0.5, 0.35) {\includegraphics[scale=1.0]{eitri-logo.png}}; %manually fine-tuned
+			\end{scope}
+		\end{tikzpicture}
+
+\begin{textblock*}{9.5cm}(6cm, 13cm)
+	\textcolor{white}{
+		\fontspec{Helvetica Now Display Black}{
+			{\flushleft\huge $title$ \\}}
+		\fontspec{Helvetica Now Display Thin}
+		{\large $versionnumber$\\}
+		{\small Produced \monthname \, \the\year{}\\}
+	}
+\end{textblock*}
+
+% Bottom of the page
+\begin{textblock*}{19cm}(1cm,28.5cm)
+	\footnotesize\textcolor{white}{
+		Copyright\textsuperscript{\textcopyright} \the\year{}. This is a sample copyright text. Ownership of all content belong to s-junlee98.\\}
+\end{textblock*}
+\end{titlepage}
+
+\pagestyle{empty}
+
+\includepdf[pages=-]{$disclaimerPDF$}
+
+%\addtocontents{listoffigures}{\contentsline{part}{\parttitle}{}
+\pagestyle{empty}
+
+\tableofcontents
+%\listoffigures
+\clearpage %\cleardoublepage %for openright
+\setlength{\leftskip}{48pt}
+\setlength{\rightskip}{3em}
+
+\clearpage
+
+\pagestyle{fancy}
+
+%% THIS IS THE MD
+$body$
+%% THIS IS THE MD
+
+\end{document}
