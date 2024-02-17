@@ -15,23 +15,25 @@
 \usepackage{amssymb}
 
 % The 3 lines below fixes "undefined environment \begin{Shade}" when using "```code" blocks in the markdown files.
-	$if(highlighting-macros)$
-	$highlighting-macros$
-	$endif$
+$if(highlighting-macros)$
+$highlighting-macros$
+$endif$
 
 %%To fix the \tightlist error
 \providecommand{\tightlist}{%
 	\setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
 
-%using custom fonts
+%Configuring fonts
 \usepackage{fontspec}
-\setmainfont[
-BoldFont = {Helvetica Now Display Bold}
-]{Helvetica Now Display}
-\newfontfamily\headingfont[]{Helvetica Now Display Bold}
+%using custom fonts
+% \setmainfont[
+% BoldFont = {Helvetica Now Display Bold}
+% ]{Helvetica Now Display}
+% \newfontfamily\headingfont[]{Helvetica Now Display Bold}
 
-%force sans serif
-%\renewcommand{\familydefault}{sfdefault}
+%default font
+\setmainfont[]{Arial}
+\newfontfamily\headingfont[]{Arial}
 
 %datetime
 \usepackage{datetime}
@@ -47,7 +49,7 @@ BoldFont = {Helvetica Now Display Bold}
 \usepackage[hidelinks]{hyperref} % creates hypertext links in pdf files (natbib compatible)
 \hypersetup{
 	pdfinfo={ Title={EITRI DOCUMENTATION},
-		DLP={TRUE}
+	DLP={TRUE}
 	}
 }   
 \usepackage[capitalise]{cleveref}
@@ -87,7 +89,7 @@ BoldFont = {Helvetica Now Display Bold}
 \usepackage{hyphenat}
 \usepackage{pdflscape}
 \newcommand{\blandscape}{\begin{landscape}} %allows you to use \blandscape in markdown
-	\newcommand{\elandscape}{\end{landscape}}
+\newcommand{\elandscape}{\end{landscape}}
 
 %% Colour setup
 \usepackage[dvipsnames, table]{xcolor}
@@ -200,7 +202,6 @@ headsep=1cm
 \renewcommand{\footrulewidth}{0.4pt}
 \fancyhf{}
 \fancyhead[L] { \bf{\textcolor{red}{$header$}} \vspace*{2em}}
-\fancyhead[R] {Part \thepart : \parttitle \\ \vspace*{0.5em} \leftmark \vspace*{0.5em}}
 
 % Footer
 \fancyfoot[C]{ \vspace*{0.5em} Page \thepage \hspace{0.05em} of \pageref{LastPage} \\
@@ -238,67 +239,62 @@ headsep=1cm
 
 %new font sizes
 \newcommand{\TitleFontSize}{\fontsize{45}{45}\selectfont}
+\newcommand{\DefaultTitleFontSize}{\fontsize{35}{35}\selectfont}
 
 %keep headers/footers off toc/loc pages
 
 \AtBeginDocument{%
-\addtocontents{toc}{\protect\thispagestyle{empty}}%
-\addtocontents{lof}{\protect\thispagestyle{empty}}%
+	\addtocontents{toc}{\protect\thispagestyle{empty}}%
+	\addtocontents{lof}{\protect\thispagestyle{empty}}%
 }
 
 %title page background
 \usepackage{eso-pic}
 \newcommand\BackgroundPic{%
-\put(0,0){%
-	\parbox[b][\paperheight]{\paperwidth}{%
-		\vfill
-		\centering
-		\includegraphics[width=\paperwidth,height=\paperheight,%
-		keepaspectratio]{$titledesign$}%
-		\vfill
+	\put(0,0){%
+		\parbox[b][\paperheight]{\paperwidth}{%
+			\vfill
+			\centering
+			\includegraphics[width=\paperwidth,height=\paperheight,%
+			keepaspectratio]{$titledesign$}%
+			\vfill
 }}}
 
 \usepackage[absolute,overlay]{textpos}
 \usepackage{fix-cm}
-\usepackage{amssymb}
 
 \begin{document}
 
 \AddToShipoutPicture*{\BackgroundPic}
-
+	
 \begin{titlepage}
-	
-	\begin{tikzpicture}[remember picture,overlay]
-		\node[anchor=north east,inner sep=2em] at (current page.north east)
-		{\includegraphics[scale=0.7]{eitri-logo.png}};
-	\end{tikzpicture}
-	
+
+		\begin{tikzpicture}[remember picture,overlay,shift=(current page.north west)]
+			\begin{scope}[x={(current page.north east)},y={(current page.south west)}] %this scope sets cooridnates as (0,0) top left, (1,1) bottom right.
+				\node at (0.5, 0.25) {\includegraphics[scale=1.0]{eitri-logo.png}}; %manually fine-tuned
+			\end{scope}
+		\end{tikzpicture}
+
 	\begin{textblock*}{9cm}(6cm,10cm)
 		\raggedright
 		\textcolor{white}{
-			\fontspec{Helvetica Now Display Black}{
 				{\flushleft\TitleFontSize PRODUCT 3} \\
-				{\flushleft\small PRODUCT FULL NAME 3}}}
+				{\flushleft\small PRODUCT FULL NAME 3}}
 	\end{textblock*}
-	
-	\begin{textblock*}{9cm}(6cm, 13cm)
-		\raggedright
-		\textcolor{white}{
-			\fontspec{Helvetica Now Display Black}{
-				{\flushleft\huge $title$} \\}
-			\fontspec{Helvetica Now Display Thin}
-			{\large $versionnumber$} \\
-			{\small Produced \monthname \, \the\year{}}
-		}
-	\end{textblock*}
-	
-	% Bottom of the page
-	\raggedright
-	\begin{textblock*}{19cm}(1cm,28.5cm)
-		\footnotesize\textcolor{white}{
-			Copyright\textsuperscript{\textcopyright} \the\year{}. This is a sample copyright text. Ownership of all content belong to s-junlee98.\\}
-	\end{textblock*}
-	
+
+\begin{textblock*}{9.5cm}(6cm, 13cm)
+	\textcolor{white}{
+		{\flushleft\huge $title$ \\}
+		{\large $versionnumber$\\}
+		{\small Produced \monthname \, \the\year{}\\}
+	}
+\end{textblock*}
+
+% Bottom of the page
+\begin{textblock*}{19cm}(1cm,28.5cm)
+	\footnotesize\textcolor{white}{
+		Copyright\textsuperscript{\textcopyright} \the\year{}. This is a sample copyright text. Ownership of all content belong to s-junlee98.\\}
+\end{textblock*}
 \end{titlepage}
 
 \pagestyle{empty}
@@ -306,20 +302,20 @@ headsep=1cm
 \includepdf[pages=-]{$disclaimerPDF$}
 
 %\addtocontents{listoffigures}{\contentsline{part}{\parttitle}{}
-	\pagestyle{empty}
-	
-	\tableofcontents
-	%\listoffigures
-	\clearpage %\cleardoublepage %for openright
-	\setlength{\leftskip}{48pt}
-	\setlength{\rightskip}{3em}
-	
-	\clearpage
-	
-	\pagestyle{fancy}
-	
-	%% THIS IS THE MD
-	$body$
-	%% THIS IS THE MD
-	
+\pagestyle{empty}
+
+\tableofcontents
+%\listoffigures
+\clearpage %\cleardoublepage %for openright
+\setlength{\leftskip}{48pt}
+\setlength{\rightskip}{3em}
+
+\clearpage
+
+\pagestyle{fancy}
+
+%% THIS IS THE MD
+$body$
+%% THIS IS THE MD
+
 \end{document}

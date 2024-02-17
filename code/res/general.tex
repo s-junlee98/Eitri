@@ -23,15 +23,17 @@ $endif$
 \providecommand{\tightlist}{%
 	\setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
 
-%using custom fonts
+%Configuring fonts
 \usepackage{fontspec}
-\setmainfont[
-BoldFont = {Helvetica Now Display Bold}
-]{Helvetica Now Display}
-\newfontfamily\headingfont[]{Helvetica Now Display Bold}
+%using custom fonts
+% \setmainfont[
+% BoldFont = {Helvetica Now Display Bold}
+% ]{Helvetica Now Display}
+% \newfontfamily\headingfont[]{Helvetica Now Display Bold}
 
-%force sans serif
-%\renewcommand{\familydefault}{sfdefault}
+%default font
+\setmainfont[]{Arial}
+\newfontfamily\headingfont[]{Arial}
 
 %datetime
 \usepackage{datetime}
@@ -275,9 +277,7 @@ headsep=1cm
 
 \begin{textblock*}{9.5cm}(6cm, 13cm)
 	\textcolor{white}{
-		\fontspec{Helvetica Now Display Black}{
-			{\flushleft\huge $title$ \\}}
-		\fontspec{Helvetica Now Display Thin}
+		{\flushleft\huge $title$ \\}
 		{\large $versionnumber$\\}
 		{\small Produced \monthname \, \the\year{}\\}
 	}
