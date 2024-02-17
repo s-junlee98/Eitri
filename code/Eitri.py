@@ -99,7 +99,7 @@ houseFont = 'Arial'
 form = sg.FlexForm(f'Eitri {version}', default_element_size=(50, 1), no_titlebar=False, alpha_channel=1, grab_anywhere=True, resizable=True)
 left_col = [
     [sg.Text(f'EITRI', size=(30, 1), font=('Arial', 25), text_color='#61C9A8')],
-    [sg.Text('Eitri is a tool which uses Company\'s formatted templates to create PDFs. \nFor more information, please visit https://github.com/s-junlee98/Eitri.', font=(houseFont, 13), tooltip='Eitri is also the dwarf who created Thanos\' Infinity Gauntlet and Thor\'s Stormbreaker.')],
+    [sg.Text('Offline Markdown Converter. \nFor more information, please visit https://github.com/s-junlee98/Eitri.', font=(houseFont, 13), tooltip='Eitri is also the dwarf who created Thanos\' Infinity Gauntlet and Thor\'s Stormbreaker.')],
     [sg.Text('', font=(houseFont, 13))],
     [sg.Text('Choose a folder containing files to be compiled. \nPlease ensure there are no spaces in the directory or the file names.',
      tooltip='The directory cannot have spaces.', font=(houseFont, 13))],
@@ -302,9 +302,9 @@ def removeTempImage():
 
 def gettemplate(product): #gets template if output file is .pdf or .tex.
     '''
-    Returns the location of the 2 templates (non-client)
+    Returns the location of the 4 templates (non-client)
     Input: None
-    Output: List with 2 items (list)
+    Output: List with 4 items (list)
     '''
     templateList = []
     template=''
@@ -316,11 +316,11 @@ def gettemplate(product): #gets template if output file is .pdf or .tex.
 
         if product == 'General':
             template = templateList[0]
-        elif product == 'Product 1':
+        elif product == 'Product~1':
             template = templateList[1]
-        elif product == 'Product 2':
+        elif product == 'Product~2':
             template = templateList[2]
-        elif product == 'Product 3':
+        elif product == 'Product~3':
             template = templateList[3]
 
     return template
